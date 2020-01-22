@@ -42,11 +42,14 @@ jobs:
       run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
 
     - name: Publish with dotnet
-      run: dotnet publish --output artifacs/ --configuration Release /p:Version=$VERSION
+      run: dotnet publish --output win-64x/ -r win-x64 --configuration Release /p:Version=$VERSION /p:PublishSingleFile=true /p:PublishTrimmed=true /p:UseAppHost=true
+      
+    - name: Create zip
+      run: zip -r 'win-64x.zip' *
+      working-directory: './win-64x'
 
     - name: Publish Release
       uses: fnkr/github-action-ghr@v1.2
       env:
-        GHR_PATH: /home/runner/work/dev-testdetector/dev-testdetector/artifacs/
-        GHR_COMPRESS: zip
+        GHR_PATH: /home/runner/work/dev-testdetector/dev-testdetector/win-64x.zip
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

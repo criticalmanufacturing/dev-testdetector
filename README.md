@@ -7,8 +7,10 @@ If you have enhancement requests or want to contribute, feel free to open an iss
 
 ## Getting Started
 
+Test Detector is a command line tool. To get started just run:
+
 ```sh
 Cmf.Tools.TestDetector.Console --help
 ```
 
-## Contribute
+This will show all available options.

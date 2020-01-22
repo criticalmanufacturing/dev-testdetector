@@ -42,10 +42,11 @@ jobs:
       run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
 
     - name: Publish with dotnet
-      run: dotnet publish --output ./artifacs/ --configuration Release /p:Version=$VERSION
+      run: dotnet publish --output artifacs/ --configuration Release /p:Version=$VERSION
 
     - name: Publish Release
       uses: fnkr/github-action-ghr@v1.2
       env:
-        GHR_PATH: ./artifacts
+        GHR_PATH: artifacts/
+        GHR_COMPRESS: zip
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

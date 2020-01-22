@@ -42,7 +42,7 @@ jobs:
       run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
 
     - name: Publish with dotnet
-      run: dotnet publish --output win-64x/ -r win-x64 --configuration Release /p:Version=$VERSION /p:PublishSingleFile=true /p:PublishTrimmed=true /p:UseAppHost=true
+      run: dotnet publish src/Cmf.Tools.TestDetector.Console/Cmf.Tools.TestDetector.Console.csproj --output win-64x/ -r win-x64 --configuration Release /p:PublishSingleFile=true /p:PublishTrimmed=true /p:UseAppHost=true /p:Version=$VERSION
       
     - name: Create zip
       run: zip -r 'win-64x.zip' *

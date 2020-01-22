@@ -45,7 +45,7 @@ jobs:
       run: dotnet publish --output artifacs/ --configuration Release /p:Version=$VERSION
 
     - name: Publish Release
-      uses: fnkr/github-action-ghr@v1.2
+      uses: fnkr/github-action-ghr@v1
       env:
         GHR_PATH: artifacts/
         GHR_COMPRESS: zip

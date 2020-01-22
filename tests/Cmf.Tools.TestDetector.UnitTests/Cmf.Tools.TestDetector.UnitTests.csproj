@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cmf.Tools.TestDetector\Cmf.Tools.TestDetector.csproj" />
+    <ProjectReference Include="..\..\src\Cmf.Tools.TestDetector\Cmf.Tools.TestDetector.csproj" />
   </ItemGroup>
 
 </Project>

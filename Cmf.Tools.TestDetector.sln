@@ -7,12 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmf.Tools.TestDetector.Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmf.Tools.TestDetector", "src\Cmf.Tools.TestDetector\Cmf.Tools.TestDetector.csproj", "{63D02AC0-F7E0-4A83-B012-655AE6687B7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmf.Tools.TestDetector.UnitTests", "src\Cmf.Tools.TestDetector.UnitTests\Cmf.Tools.TestDetector.UnitTests.csproj", "{3721A64B-06C8-4965-909D-8309606B14F4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4CC9D4E-FD36-4FE4-B683-367B1253A8BE}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmf.Tools.TestDetector.UnitTests", "tests\Cmf.Tools.TestDetector.UnitTests\Cmf.Tools.TestDetector.UnitTests.csproj", "{3721A64B-06C8-4965-909D-8309606B14F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

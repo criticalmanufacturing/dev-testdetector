@@ -350,7 +350,7 @@ namespace Cmf.Tools.TestDetector.ChangeHandlers
                 _logger.Debug<string>($"Processing file '{p.FilePath}' ({p.Operation.ToString("D")}");
             })).ConfigureAwait(false);
 
-            await this.Initialize(_solution).ConfigureAwait(false);
+            await this.Initialize(solution).ConfigureAwait(false);
         }
 
         /// <summary>

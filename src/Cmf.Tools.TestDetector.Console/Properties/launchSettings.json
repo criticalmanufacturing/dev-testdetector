@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cmf.Tools.TestDetector.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "--repositorypath=\"\" --testsolutionpath=\"\" --testcategory=\"\" --sourcecommitid=\"\" --targetcommitid=\"\""
+    }
+  }
+}

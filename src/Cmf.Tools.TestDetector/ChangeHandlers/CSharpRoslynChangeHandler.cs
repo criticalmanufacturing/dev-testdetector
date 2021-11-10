@@ -288,6 +288,8 @@ namespace Cmf.Tools.TestDetector.ChangeHandlers
                 throw new ArgumentOutOfRangeException(nameof(filePath));
             }
 
+            _logger.Info($"Adding category {category} to file {filePath}");
+
             var method = await FindMethod(roslynNode, lineNumber).ConfigureAwait(false);
 
             if (method == null)
@@ -364,6 +366,8 @@ namespace Cmf.Tools.TestDetector.ChangeHandlers
             {
                 throw new ArgumentNullException(nameof(solution));
             }
+
+            _logger.Debug($"Initializing solution {solution.FilePath}");
 
             _solution = solution;
             ProjectDependencyGraph projectGraph = solution.GetProjectDependencyGraph();

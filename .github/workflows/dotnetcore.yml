@@ -20,7 +20,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 6.x
 
     - name: Test with dotnet
       run: dotnet test --configuration Release
@@ -36,13 +36,13 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 6.x
 
     - name: Determine version
       run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
 
     - name: Publish with dotnet
-      run: dotnet publish src/Cmf.Tools.TestDetector.Console/Cmf.Tools.TestDetector.Console.csproj --output win-64x/ -r win-x64 --configuration Release /p:PublishSingleFile=true /p:IncludeSymbolsInSingleFile=true /p:UseAppHost=true /p:Version=$VERSION
+      run: dotnet publish src/Cmf.Tools.TestDetector.Console/Cmf.Tools.TestDetector.Console.csproj --output win-64x/ -r win-x64 --self-contained --configuration Release /p:PublishSingleFile=true /p:UseAppHost=true /p:Version=$VERSION
       
     - name: Create zip
       run: zip -r '../win-64x.zip' *

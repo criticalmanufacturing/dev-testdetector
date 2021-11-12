@@ -59,23 +59,26 @@ namespace Cmf.Tools.TestDetector.Console
 
                 var container = builder.Build();
 
-                using var scope = container.BeginLifetimeScope();
-                var repoFactory = scope.Resolve<IRepositoryFactory>();
-                using var repo = repoFactory.Create(o.RepositoryPath);
-                var cSharpChangeHandler = scope.ResolveKeyed<IChangeHandler>(ChangeHandlerType.CSharpRoslynChangeHandler);
-
-                using (cSharpChangeHandler)
+                using (var scope = container.BeginLifetimeScope())
                 {
-                    cSharpChangeHandler.Initialize(o.TestSolutionPath).Wait();
-                    System.Collections.Generic.IEnumerable<Changes.IFileChanges> changes = repo.GetChanges(o.SourceCommitId, o.TargetCommitId, o.Filter);
-                    foreach (var change in changes)
+                    var repoFactory = scope.Resolve<IRepositoryFactory>();
+                    using (var repo = repoFactory.Create(o.RepositoryPath))
                     {
-                        foreach (var block in change.Blocks)
-                        {
-                            cSharpChangeHandler.TryAddCategoryToTestMethod(change.AbsolutePath, block.Line, o.TestCategory, o.RecursiveSearch).Wait();
-                        }
+                       var cSharpChangeHandler = scope.ResolveKeyed<IChangeHandler>(ChangeHandlerType.CSharpRoslynChangeHandler);
+
+                       using (cSharpChangeHandler)
+                       {
+                            cSharpChangeHandler.Initialize(o.TestSolutionPath).Wait();
+                            foreach (var change in repo.GetChanges(o.SourceCommitId, o.TargetCommitId, o.Filter))
+                            {
+                                foreach (var block in change.Blocks)
+                                {
+                                    cSharpChangeHandler.TryAddCategoryToTestMethod(change.AbsolutePath, block.Line, o.TestCategory, o.RecursiveSearch).Wait();
+                                }
+                            }
+                            cSharpChangeHandler.Save();
+                       }
                     }
-                    cSharpChangeHandler.Save();
                 }
             });
         }

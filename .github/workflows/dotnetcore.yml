@@ -24,7 +24,7 @@ jobs:
 
     - name: Test with dotnet
       run: dotnet test --configuration Release
-      
+
   publish:
     runs-on: ubuntu-latest
     needs: build
@@ -38,12 +38,9 @@ jobs:
       with:
         dotnet-version: 6.x
 
-    - name: Determine version
-      run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
-
     - name: Publish with dotnet
-      run: dotnet publish src/Cmf.Tools.TestDetector.Console/Cmf.Tools.TestDetector.Console.csproj --output win-64x/ -r win-x64 --self-contained --configuration Release /p:PublishSingleFile=true /p:UseAppHost=true /p:Version=$VERSION
-      
+      run: dotnet publish src/Cmf.Tools.TestDetector.Console/Cmf.Tools.TestDetector.Console.csproj --output win-64x/ -r win-x64 --self-contained --configuration Release /p:PublishSingleFile=true /p:UseAppHost=true /p:Version=$(git describe --tags --dirty)
+
     - name: Create zip
       run: zip -r '../win-64x.zip' *
       working-directory: './win-64x'
